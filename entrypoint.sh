@@ -37,3 +37,6 @@ if [ ! $before_sha = $after_sha ]; then
   git pull origin $GITHUB_REF
   git push origin $GITHUB_REF
 fi
+
+echo "-----matrix action------"
+echo $INPUT_MATRIX

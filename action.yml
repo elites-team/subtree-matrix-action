@@ -1,6 +1,9 @@
 name: "elites-team/git-subtree"
 description: "Sync a sub-directory from a parent repo to a child repository (git subtree.)"
 inputs:
+  matrix:
+    description: "([path]= [repo]= [branch]=)"
+    required: false
   path:
     description: "Path prefix in parent repo to split into child subtree (eg. src/PackageName.)"
     required: true
