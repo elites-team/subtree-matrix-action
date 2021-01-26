@@ -37,7 +37,7 @@ if [ ! $before_sha = $after_sha ]; then
   git log --oneline -5
   git remote -v
   echo "----------------Check point----------------------"
-  git pull origin master
+  git pull origin :refs/tags/master
   git push origin master
 fi
 git log --oneline -5
