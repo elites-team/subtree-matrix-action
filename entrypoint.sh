@@ -33,7 +33,7 @@ fi
 if [ "$INPUT_MESSAGE" == "" ]; then
 	PULL_MESSAGE='-m "Update dependency of subtree"'
 else
-	PULL_MESSAGE="$INPUT_MESSAGE"
+	PULL_MESSAGE='-m "$INPUT_MESSAGE"'
 fi
 
 # Sync subtree directory
