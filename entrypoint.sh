@@ -36,4 +36,4 @@ fi
 echo "----------------git subtree $INPUT_ACTION----------------------"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
 git log --oneline
-# git push -u origin master
+git push -u origin master
