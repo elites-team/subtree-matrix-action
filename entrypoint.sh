@@ -11,6 +11,9 @@ chmod 0600 /root/.ssh/subtree
 
 eval `ssh-agent`
 ssh-add /root/.ssh/subtree
+
+git config user.email "$GITHUB_RUN_NUMBER+github-actions[bot]@users.noreply.github.com"
+git config user.name "github-actions[bot]"
 # Generate sha256 of the downstream repo name
 # SPLIT_DIR=$(echo -n "${INPUT_REPO}" | sha256sum)
 # SPLIT_DIR="${SPLIT_DIR::-3}"
