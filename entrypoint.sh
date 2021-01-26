@@ -38,7 +38,7 @@ fi
 
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
-ssh -i /root/.ssh/subtree git@github.com
+# ssh -i /root/.ssh/subtree git@github.com
 git log --oneline
 echo git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "$PULL_MESSAGE"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "$PULL_MESSAGE"
