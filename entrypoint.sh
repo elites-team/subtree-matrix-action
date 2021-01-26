@@ -30,6 +30,11 @@ fi
 
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
+before_sha=`git rev-parse --short HEAD`
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
+after_sha=`git rev-parse --short HEAD`
+if [ ! $before_sha = $after_sha ]; then
+  git pull origin master
+  git push origin master
+fi
 git log --oneline -5
-git push -u origin master
