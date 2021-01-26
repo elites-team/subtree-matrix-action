@@ -23,15 +23,15 @@ fi
 
 # Check for merge message
 if [ "$INPUT_MESSAGE" == "" ]; then
-	PULL_MESSAGE="-m '$INPUT_MESSAGE'"
+	PULL_MESSAGE="-m 'Update dependency of subtree'"
 else
-	PULL_MESSAGE=""
+	PULL_MESSAGE="-m '$INPUT_MESSAGE'"
 fi
 
 # Sync subtree directory
+echo "----------------git subtree $INPUT_ACTION----------------------"
 before_sha=`git rev-parse --short HEAD`
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
-git subtree push --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH"
 after_sha=`git rev-parse --short HEAD`
 if [ ! $before_sha = $after_sha ]; then
   git pull origin $GITHUB_REF
