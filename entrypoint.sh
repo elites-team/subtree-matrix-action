@@ -40,10 +40,9 @@ fi
 
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
-ssh -T git@github.com
+# ssh -T git@github.com
 # git log --oneline
 echo git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
-git subtree pull --prefix="$INPUT_PATH" git@github.com:elites-team/sub_env.git master --squash "${PULL_MESSAGE}"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
 # git push -u origin master
 
