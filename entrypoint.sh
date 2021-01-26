@@ -31,15 +31,15 @@ fi
 
 # Check for merge message
 if [ "$INPUT_MESSAGE" == "" ]; then
-	PULL_MESSAGE="Update dependency of subtree"
+	PULL_MESSAGE='Update dependency of subtree'
 else
-	PULL_MESSAGE="$INPUT_MESSAGE"
+	PULL_MESSAGE='$INPUT_MESSAGE'
 fi
 
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
 # ssh -i /root/.ssh/subtree git@github.com
-git log --oneline
+# git log --oneline
 echo git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash -m "$PULL_MESSAGE"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash -m "$PULL_MESSAGE"
 # git push -u origin master
