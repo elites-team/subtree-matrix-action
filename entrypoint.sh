@@ -31,7 +31,7 @@ fi
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
 before_sha=`git rev-parse --short HEAD`
-# git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
+git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
 git subtree push --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH"
 after_sha=`git rev-parse --short HEAD`
 if [ ! $before_sha = $after_sha ]; then
