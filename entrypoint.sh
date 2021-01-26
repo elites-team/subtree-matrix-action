@@ -15,14 +15,10 @@ ssh-add /root/.ssh/subtree
 git config user.email "$GITHUB_RUN_NUMBER+github-actions[bot]@users.noreply.github.com"
 git config user.name "github-actions[bot]"
 
-# Resolve downstream branch.
-# If not set then use the event github ref, if the ref isn't set default to master.
 if [ "$INPUT_BRANCH" == "" ]; then
-	# if [ -z "$GITHUB_REF" ] || [ "$GITHUB_REF" == "" ]; then
-		PULL_BRANCH="master"
-	else
-		PULL_BRANCH="$INPUT_BRANCH"
-	# fi
+  PULL_BRANCH="master"
+else
+  PULL_BRANCH="$INPUT_BRANCH"
 fi
 
 # Check for merge message
@@ -35,5 +31,5 @@ fi
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
-git log --oneline
+git log --oneline -5
 git push -u origin master
