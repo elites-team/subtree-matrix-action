@@ -34,8 +34,8 @@ before_sha=`git rev-parse --short HEAD`
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
 after_sha=`git rev-parse --short HEAD`
 if [ ! $before_sha = $after_sha ]; then
-  git branch
-  git status
+  git log --oneline -5
+  git remote -v
   echo "----------------Check point----------------------"
   git pull origin master
   git push origin master
