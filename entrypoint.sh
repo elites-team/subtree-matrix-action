@@ -29,14 +29,14 @@ else
 fi
 
 # Sync subtree directory
-before_sha=`git rev-parse --short HEAD`
-git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
-git subtree push --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH"
-after_sha=`git rev-parse --short HEAD`
-if [ ! $before_sha = $after_sha ]; then
-  git pull origin $GITHUB_REF
-  git push origin $GITHUB_REF
-fi
+# before_sha=`git rev-parse --short HEAD`
+# git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "${PULL_MESSAGE}"
+# git subtree push --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH"
+# after_sha=`git rev-parse --short HEAD`
+# if [ ! $before_sha = $after_sha ]; then
+#   git pull origin $GITHUB_REF
+#   git push origin $GITHUB_REF
+# fi
 
 echo "-----matrix action------"
 echo $INPUT_MATRIX
