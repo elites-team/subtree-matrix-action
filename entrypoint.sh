@@ -35,6 +35,7 @@ git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_
 after_sha=`git rev-parse --short HEAD`
 if [ ! $before_sha = $after_sha ]; then
   git branch
+  git status
   echo "----------------Check point----------------------"
   git pull origin master
   git push origin master
