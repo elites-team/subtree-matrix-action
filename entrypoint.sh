@@ -21,7 +21,6 @@ chmod 0600 /root/.ssh/subtree
 
 # Resolve downstream branch.
 # If not set then use the event github ref, if the ref isn't set default to master.
-
 if [ "$INPUT_BRANCH" == "" ]; then
 	# if [ -z "$GITHUB_REF" ] || [ "$GITHUB_REF" == "" ]; then
 		PULL_BRANCH="master"
@@ -40,6 +39,7 @@ fi
 # Sync subtree directory
 echo "----------------git subtree $INPUT_ACTION----------------------"
 ssh -i /root/.ssh/subtree git@github.com
+git log --oneline
 echo git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "$PULL_MESSAGE"
 git subtree pull --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH" --squash "$PULL_MESSAGE"
 # git push -u origin master
