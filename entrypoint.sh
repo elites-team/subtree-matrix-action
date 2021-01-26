@@ -8,7 +8,7 @@ ssh-keyscan github.com > /root/.ssh/known_hosts
 # Set ssh key for subtree
 echo "${INPUT_DEPLOY_KEY}" >> /root/.ssh/subtree
 chmod 0600 /root/.ssh/subtree
-
+sh-add /root/.ssh/subtree
 # Generate sha256 of the downstream repo name
 # SPLIT_DIR=$(echo -n "${INPUT_REPO}" | sha256sum)
 # SPLIT_DIR="${SPLIT_DIR::-3}"
