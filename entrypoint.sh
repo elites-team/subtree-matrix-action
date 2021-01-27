@@ -39,4 +39,31 @@ set -e
 # fi
 
 echo "-----matrix action------"
-echo "$INPUT_MATRIX"
+
+# json作成にはヒアドキュメントを使う
+json=$(cat << EOS
+[
+  {
+    "path": "prefix/path",
+    "repo": "owner/repository",
+    "branch": "master"
+  },
+  {
+    "path": "prefix/path",
+    "repo": "owner/repository",
+    "branch": "master"
+  }
+]
+EOS
+)
+
+# JSON解析にはjqを使う 
+echo "-r '.[0].path'"
+echo $INPUT_MATRIX | jq -r '.[0].path'
+echo
+echo "-r '.[0].repo'"
+echo $INPUT_MATRIX | jq -r '.[0].repo'
+echo
+echo "-r '.[0].branch'"
+echo $INPUT_MATRIX | jq -r '.[0].branch'
+
