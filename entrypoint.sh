@@ -39,7 +39,7 @@ set -e
 # fi
 
 echo "-----matrix action------"
-
+echo $INPUT_MATRIX
 # json作成にはヒアドキュメントを使う
 json=$(cat << EOS
 [
@@ -57,7 +57,7 @@ json=$(cat << EOS
 EOS
 )
 
-# JSON解析にはjqを使う 
+# JSON解析にはjqを使う
 echo "-r '.[0].path'"
 echo $INPUT_MATRIX | jq -r '.[0].path'
 echo
