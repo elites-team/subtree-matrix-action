@@ -39,7 +39,7 @@ set -e
 # fi
 
 echo "-----matrix action------"
-echo $INPUT_MATRIX
+# echo $INPUT_MATRIX
 # json作成にはヒアドキュメントを使う
 # INPUT_MATRIX=$(cat << EOS
 # [
@@ -58,21 +58,24 @@ echo $INPUT_MATRIX
 # )
 
 # JSON解析にはjqを使う
-echo "-r '.[0].path'"
-echo $INPUT_MATRIX | jq -r '.[0].path'
-echo
-echo "-r '.[0].repo'"
-echo $INPUT_MATRIX | jq -r '.[0].repo'
-echo
-echo "-r '.[0].branch'"
-echo $INPUT_MATRIX | jq -r '.[0].branch'
-echo
-echo "-r '. | length'"
-echo $INPUT_MATRIX | jq -r '. | length'
+# echo "-r '.[0].path'"
+# echo $INPUT_MATRIX | jq -r '.[0].path'
+# echo
+# echo "-r '.[0].repo'"
+# echo $INPUT_MATRIX | jq -r '.[0].repo'
+# echo
+# echo "-r '.[0].branch'"
+# echo $INPUT_MATRIX | jq -r '.[0].branch'
+# echo
+# echo "-r '. | length'"
+# echo $INPUT_MATRIX | jq -r '. | length'
 
 for matrix in $(echo "${INPUT_MATRIX}" | jq -r '.[] | @base64'); do
   echo ${matrix}
-  echo ${matrix} | base64 -d | jq -r '.path'
-  echo ${matrix} | base64 -d | jq -r '.repo'
-  echo ${matrix} | base64 -d | jq -r '.branch'
+  path=$(echo ${matrix} | base64 -d | jq -r '.path')
+  echo $path
+  repo=$(echo ${matrix} | base64 -d | jq -r '.repo')
+  echo $repo
+  branch=$(echo ${matrix} | base64 -d | jq -r '.branch')
+  echo $branch
 done
