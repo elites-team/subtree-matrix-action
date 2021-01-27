@@ -41,21 +41,21 @@ set -e
 echo "-----matrix action------"
 echo $INPUT_MATRIX
 # json作成にはヒアドキュメントを使う
-json=$(cat << EOS
-[
-  {
-    "path": "prefix/path",
-    "repo": "owner/repository",
-    "branch": "master"
-  },
-  {
-    "path": "prefix/path",
-    "repo": "owner/repository",
-    "branch": "master"
-  }
-]
-EOS
-)
+# INPUT_MATRIX=$(cat << EOS
+# [
+#   {
+#     "path": "prefix/path",
+#     "repo": "owner/repository",
+#     "branch": "master"
+#   },
+#   {
+#     "path": "prefix/path",
+#     "repo": "owner/repository",
+#     "branch": "master"
+#   }
+# ]
+# EOS
+# )
 
 # JSON解析にはjqを使う
 echo "-r '.[0].path'"
@@ -66,4 +66,13 @@ echo $INPUT_MATRIX | jq -r '.[0].repo'
 echo
 echo "-r '.[0].branch'"
 echo $INPUT_MATRIX | jq -r '.[0].branch'
+echo
+echo "-r '. | length'"
+echo $INPUT_MATRIX | jq -r '. | length'
 
+for matrix in $(echo "${INPUT_MATRIX}" | jq -r '.[] | @base64'); do
+  echo ${matrix}
+  echo ${matrix} | base64 -d | jq -r '.path'
+  echo ${matrix} | base64 -d | jq -r '.repo'
+  echo ${matrix} | base64 -d | jq -r '.branch'
+done
