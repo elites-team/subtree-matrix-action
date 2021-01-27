@@ -40,7 +40,7 @@ git config user.name "github-actions[bot]"
 # fi
 # # ------------------for loop end--------------------
 echo "-----matrix action------"
-# echo $INPUT_MATRIX
+echo $INPUT_MATRIX
 # json作成にはヒアドキュメントを使う
 # INPUT_MATRIX=$(cat << EOS
 # [
@@ -73,13 +73,13 @@ echo "-----matrix action------"
 
 for base in $(echo "${INPUT_MATRIX}" | jq -r '.[] | @base64'); do
   matrix=$(echo ${base} | base64 -d )
-  # echo ${matrix}
+  echo ${matrix}
   INPUT_PATH=$(echo ${matrix} | jq -r '.path')
-  # echo $INPUT_PATH
+  echo $INPUT_PATH
   INPUT_REPO=$(echo ${matrix} | jq -r '.repo')
-  # echo $INPUT_REPO
+  echo $INPUT_REPO
   INOUT_BRANCH=$(echo ${matrix} | jq -r '.branch')
-  # echo $INOUT_BRANCH
+  echo $INOUT_BRANCH
   # -------------for loop start---------------
   if [ "$INPUT_BRANCH" == "" ]; then
     PULL_BRANCH="master"
