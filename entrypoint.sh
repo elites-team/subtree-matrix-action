@@ -41,8 +41,8 @@ for base in $(echo "${INPUT_MATRIX}" | jq -r '.[] | @base64'); do
   git subtree push --prefix="$INPUT_PATH" git@github.com:"$INPUT_REPO".git "$PULL_BRANCH"
   after_sha=`git rev-parse --short HEAD`
   if [ ! $before_sha = $after_sha ]; then
-    git pull origin $GITHUB_REF
-    git push origin $GITHUB_REF
+    git pull origin master
+    git push origin master
   fi
   # ------------------for loop end--------------------
 done
