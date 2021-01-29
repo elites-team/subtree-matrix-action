@@ -20,7 +20,7 @@ for base in $(echo "${INPUT_MATRIX}" | jq -r '.[] | @base64'); do
   matrix=$(echo ${base} | base64 -d )
   INPUT_PATH=$(echo ${matrix} | jq -r '.path')
   INPUT_REPO=$(echo ${matrix} | jq -r '.repo')
-  INOUT_BRANCH=$(echo ${matrix} | jq -r '.branch')
+  INPUT_BRANCH=$(echo ${matrix} | jq -r '.branch')
   if [ "$INPUT_BRANCH" == "" ]; then
     PULL_BRANCH="master"
   else
